@@ -38,7 +38,7 @@ class JobsSpider(Spider):
             new_jobs.append(job)
             yield job
 
-        self.job_helper.insert(new_jobs)
+        self.job_helper.insert_db(new_jobs)
 
         urls_s = response.css('.morelink')
         yield from [response.follow(url_s, callback=self.parse) for url_s in urls_s]
